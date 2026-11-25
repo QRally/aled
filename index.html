@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ALED • 2026 Oulton Park MINI Cooper S Christmas E-Card</title>
+  <style>
+    /* =========================================================================
+       BASE & OLED BLACK COCKPIT THEME
+       ========================================================================= */
+    :root {
+      --bg-oled: #000000;
+      --panel-bg: #0c0e12;
+      --panel-border: #232732;
+      --welsh-red: #dc2626;
+      --welsh-green: #16a34a;
+      --mini-red: #c8102e;
+      --accent-amber: #f59e0b;
+      --accent-cyan: #38bdf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg-oled);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      overflow-x: hidden;
+    }
+
+    /* =========================================================================
+       MOBILE-FIRST 100DVH LAYOUT CONTAINER
+       ========================================================================= */
+    .app-shell {
+      width: 100%;
+      max-width: 980px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px 12px 14px 12px;
+      gap: 10px;
+    }
+
+    /* Top Circuit Header Bar */
+    .stage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 12px;
+      background: #0c0e12;
+      border: 1px solid #1f232d;
+      border-radius: 10px;
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      gap: 8px;
+    }
+
+    .stage-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      color: #f8fafc;
+      min-width: 0;
+    }
+
+    .stage-badge span:last-child {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--welsh-red);
+      box-shadow: 0 0 8px var(--welsh-red);
+      animation: pulseDot 1.6s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .audio-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #141820;
+      border: 1px solid #2e3442;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .audio-pill.active {
+      color: #e2e8f0;
+      border-color: #475569;
+    }
+
+    .audio-pill.muted {
+      color: #f87171;
+      border-color: #7f1d1d;
+    }
+
+    /* =========================================================================
+       OVERHEAD CIRCUIT CANVAS VIEWPORT (STARTS PITCH-BLACK)
+       ========================================================================= */
+    .stage-viewport {
+      position: relative;
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 310px;
+      max-height: 550px;
+      background: #000000;
+      border: 1px solid #232732;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.95);
+    }
+
+    canvas#circuitCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+    }
+
+    /* =========================================================================
+       TACTILE TRACK-DAY SWITCHGEAR DASHBOARD PANEL
+       ========================================================================= */
+    .dash-panel {
+      background: linear-gradient(180deg, #13161d 0%, #0c0e12 100%);
+      border: 1px solid #262a36;
+      border-radius: 14px;
+      padding: 12px 14px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 8px 24px rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    /* Warning Tell-Tale Lamps Bar */
+    .telltale-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1f2430;
+      flex-wrap: wrap;
+    }
+
+    .telltale-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lamp {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #4b5563;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .lamp-bulb {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #1a1e26;
+      border: 1px solid #333846;
+      transition: all 0.2s ease;
+    }
+
+    .lamp.ign-on { color: #fca5a5; }
+    .lamp.ign-on .lamp-bulb {
+      background: #ef4444;
+      box-shadow: 0 0 10px #ef4444, inset 0 0 3px #fff;
+    }
+
+    .lamp.oil-warn { color: #fcd34d; }
+    .lamp.oil-warn .lamp-bulb {
+      background: #f59e0b;
+      box-shadow: 0 0 10px #f59e0b, inset 0 0 3px #fff;
+    }
+
+    .lamp.track-on { color: #7dd3fc; }
+    .lamp.track-on .lamp-bulb {
+      background: #38bdf8;
+      box-shadow: 0 0 10px #38bdf8, inset 0 0 3px #fff;
+    }
+
+    .rpm-readout {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #facc15;
+      background: #060709;
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid #262b36;
+      letter-spacing: 0.05em;
+    }
+
+    /* 2x2 Mobile / 4-Col Desktop Switch Grid */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 560px) {
+      .controls-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .control-cell {
+      background: #101319;
+      border: 1px solid #232834;
+      border-radius: 10px;
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 7px;
+      text-align: center;
+    }
+
+    .control-cell.welsh-accent {
+      border-color: #2f2a33;
+      background: linear-gradient(180deg, #15141a 0%, #101319 100%);
+    }
+
+    .switch-label {
+      font-size: 0.67rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #cbd5e1;
+      line-height: 1.2;
+    }
+
+    .switch-sub {
+      font-size: 0.62rem;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* =========================================================================
+       TACTILE METAL TOGGLE SWITCHES
+       ========================================================================= */
+    .toggle-btn {
+      position: relative;
+      width: 50px;
+      height: 62px;
+      background: radial-gradient(circle at 50% 50%, #2a2e37 0%, #15171c 75%);
+      border: 2px solid #474d59;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      padding: 0;
+    }
+
+    /* Welsh Red, White & Green Ring when Track Lights Active */
+    .toggle-btn.welsh-ring {
+      border: 2px solid #474d59;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .toggle-btn.welsh-ring[aria-pressed="true"] {
+      border-color: #ffffff;
+      box-shadow: 0 0 0 3px #dc2626, 0 0 0 6px #16a34a, 0 0 16px rgba(22, 163, 74, 0.55);
+    }
+
+    .toggle-btn:focus-visible {
+      outline: 2px solid #facc15;
+      outline-offset: 2px;
+    }
+
+    .toggle-nut {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #9ca3af 0%, #4b5563 50%, #1f2937 100%);
+      border: 1px solid #d1d5db;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .toggle-bat {
+      position: absolute;
+      width: 10px;
+      height: 28px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #6b7280 0%, #f3f4f6 45%, #4b5563 100%);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.85);
+      transform-origin: center center;
+      transform: translateY(8px) scaleY(0.95);
+      transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .toggle-btn[aria-pressed="true"] .toggle-bat {
+      transform: translateY(-8px) scaleY(0.95);
+    }
+
+    /* =========================================================================
+       ENGINE PUSH-BUTTON STARTER
+       ========================================================================= */
+    .starter-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 3px solid #525866;
+      background: radial-gradient(circle at 35% 30%, #ff5a59 0%, #dc2626 55%, #7f1d1d 100%);
+      color: #ffffff;
+      font-size: 0.65rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgba(220, 38, 38, 0.35), inset 0 2px 3px rgba(255, 255, 255, 0.4);
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .starter-btn:active {
+      transform: scale(0.93) translateY(2px);
+    }
+
+    .starter-btn.running {
+      background: radial-gradient(circle at 35% 30%, #4ade80 0%, #16a34a 60%, #14532d 100%);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.45), inset 0 2px 3px rgba(255, 255, 255, 0.4);
+    }
+
+    /* =========================================================================
+       FULL-WIDTH 1.6 SUPERCHARGED R53 FLYING LAP / THROTTLE BAR
+       ========================================================================= */
+    .throttle-row {
+      width: 100%;
+    }
+
+    .throttle-btn {
+      width: 100%;
+      min-height: 54px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 2px solid #dc2626;
+      background: linear-gradient(180deg, #991b1b 0%, #450a0a 100%);
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      transition: transform 0.07s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .throttle-btn .btn-kicker {
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #fde047;
+      text-transform: uppercase;
+    }
+
+    .throttle-btn .btn-main {
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .throttle-btn:active, .throttle-btn.revving {
+      transform: scale(0.985) translateY(2px);
+      border-color: #22c55e;
+      background: linear-gradient(180deg, #b91c1c 0%, #7f1d1d 100%);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.45);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+    <!-- Top Circuit Header -->
+    <header class="stage-header">
+      <div class="stage-badge">
+        <span class="live-dot"></span>
+        <span id="headerTitleText">OULTON PARK • TRACK DAY • NORTH WALES</span>
+      </div>
+      <button id="audioToggleBtn" class="audio-pill active" type="button" title="Toggle Web Audio Engine Sound">
+        <span id="audioIcon">🔊</span>
+        <span id="audioStatusText">SOUND ON</span>
+      </button>
+    </header>
+
+    <!-- Main Overhead Circuit Canvas (Starts Pitch-Black) -->
+    <main class="stage-viewport">
+      <canvas id="circuitCanvas"></canvas>
+    </main>
+
+    <!-- Track-Day Cockpit Switchgear Dashboard -->
+    <section class="dash-panel" aria-label="BMW MINI Cooper S Track Controls">
+      <!-- Tell-Tale Warning LEDs & Digital Tachometer -->
+      <div class="telltale-bar">
+        <div class="telltale-group">
+          <div id="lampIgn" class="lamp">
+            <span class="lamp-bulb"></span>
+            <span>IGN</span>
+          </div>
+          <div id="lampOil" class="lamp">
+            <span class="lamp-bulb"></span>
+            <span>OIL</span>
+          </div>
+          <div id="lampTrack" class="lamp">
+            <span class="lamp-bulb"></span>
+            <span>TRACK LIGHTS</span>
+          </div>
+        </div>
+        <div id="rpmDisplay" class="rpm-readout">0 RPM</div>
+      </div>
+
+      <!-- 4 Primary Tactile Switches -->
+      <div class="controls-grid">
+        <!-- 1. Ignition Toggle -->
+        <div class="control-cell">
+          <span class="switch-label">Ignition</span>
+          <button id="swIgnition" class="toggle-btn" type="button" aria-pressed="false" aria-label="Master Ignition Switch">
+            <span class="toggle-nut"></span>
+            <span class="toggle-bat"></span>
+          </button>
+          <span id="lblIgnition" class="switch-sub">OFF</span>
+        </div>
+
+        <!-- 2. Engine Push-Button Starter -->
+        <div class="control-cell">
+          <span class="switch-label">Engine</span>
+          <button id="btnStart" class="starter-btn" type="button" aria-label="Start 1.6 Supercharged MINI Engine">
+            START
+          </button>
+          <span id="lblEngine" class="switch-sub">STOPPED</span>
+        </div>
+
+        <!-- 3. Track Lights Toggle (Welsh Red/White/Green Ring when active) -->
+        <div class="control-cell welsh-accent">
+          <span class="switch-label">Track Lights</span>
+          <button id="swTrackLights" class="toggle-btn welsh-ring" type="button" aria-pressed="false" aria-label="Oulton Park Track Floodlights Switch">
+            <span class="toggle-nut"></span>
+            <span class="toggle-bat"></span>
+          </button>
+          <span id="lblTrackLights" class="switch-sub">OFF</span>
+        </div>
+
+        <!-- 4. Festive Lights Toggle -->
+        <div class="control-cell">
+          <span class="switch-label">Festive Lights</span>
+          <button id="swFestiveLights" class="toggle-btn" type="button" aria-pressed="false" aria-label="Festive Pit Wall and Tree Lights Switch">
+            <span class="toggle-nut"></span>
+            <span class="toggle-bat"></span>
+          </button>
+          <span id="lblFestiveLights" class="switch-sub">OFF</span>
+        </div>
+      </div>
+
+      <!-- Full-Width 1.6 Supercharged R53 Flying Lap / Throttle Button -->
+      <div class="throttle-row">
+        <button id="btnThrottle" class="throttle-btn" type="button" aria-label="Hold Throttle for Flying Lap of Oulton Park">
+          <span id="throttleKicker" class="btn-kicker">1.6 SUPERCHARGED R53</span>
+          <span class="btn-main">HOLD THROTTLE / FLYING LAP (HOLD / SPACEBAR)</span>
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    /**
+     * =========================================================================
+     * EASY CONFIGURATION BLOCK FOR ROGER
+     * Tweak driverName, carLabel, circuitName, or greeting strings anytime!
+     * =========================================================================
+     */
+    const CARD_CONFIG = {
+      driverName: "ALED",
+      carLabel: "1.6 SUPERCHARGED R53",
+      circuitName: "OULTON PARK • TRACK DAY • NORTH WALES",
+      year: "2026",
+      paceNote: "FLAT OUT AT DRUIDS • INTO NADOLIG LLAWEN 2026 • STAY ON THE BLACK STUFF!",
+      greeting: "NADOLIG LLAWEN • MERRY CHRISTMAS",
+      fromLine: "FROM ALED",
+      finaleBanner: "FLYING LAP COMPLETE • NADOLIG LLAWEN FROM ALED",
+      standbyPrompt: "FLICK TRACK LIGHTS OR START ENGINE TO LIGHT THE CIRCUIT",
+      miniBodyColour: "#c8102e",   // Chili Red
+      miniStripeColour: "#f8fafc", // Pepper White
+      miniRoofColour: "#0f172a"    // Jet Black Roof & Wing Mirrors
+    };
+
+    /**
+     * =========================================================================
+     * APPLICATION STATE
+     * =========================================================================
+     */
+    const state = {
+      ignitionOn: false,
+      engineRunning: false,
+      cranking: false,
+      trackLightsOn: false,
+      festiveLightsOn: false,
+      throttlePressed: false,
+      muted: false,
+      rpm: 0,
+      targetRpm: 0,
+      lapProgress: 0.0,         // 0.0 -> 1.0 around Oulton Park closed spline
+      lapSpeed: 0.0,            // Current normalized lap speed
+      isBraking: false,
+      lapCelebrationTimer: 0,
+      time: 0,
+      lastFrameTime: performance.now()
+    };
+
+    document.getElementById("headerTitleText").textContent = CARD_CONFIG.circuitName;
+    document.getElementById("throttleKicker").textContent = CARD_CONFIG.carLabel;
+
+    /**
+     * =========================================================================
+     * WEB AUDIO API — 1.6L SUPERCHARGED BMW MINI COOPER S (R53)
+     * Synthesises a punchy 4-cylinder exhaust note, characteristic high-pitched
+     * Eaton M45 supercharger whine rising with RPM, and overrun exhaust pops.
+     * =========================================================================
+     */
+    class MiniSuperchargedAudio {
+      constructor() {
+        this.ctx = null;
+        this.masterGain = null;
+        this.engineGain = null;
+        this.oscExhaustA = null;
+        this.oscExhaustB = null;
+        this.oscSub = null;
+        this.oscSuperchargerMain = null;
+        this.oscSuperchargerHarmonic = null;
+        this.scGain = null;
+        this.filter = null;
+        this.noiseBuffer = null;
+        this.initialised = false;
+      }
+
+      init() {
+        if (this.initialised) {
+          if (this.ctx && this.ctx.state === "suspended") {
+            this.ctx.resume();
+          }
+          return;
+        }
+
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+
+        this.ctx = new AudioCtx();
+        this.masterGain = this.ctx.createGain();
+        this.masterGain.gain.value = state.muted ? 0 : 0.42;
+        this.masterGain.connect(this.ctx.destination);
+
+        // Pink-ish noise buffer for overrun exhaust crackles & tyre scrub
+        const bufferSize = this.ctx.sampleRate * 2;
+        this.noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = this.noiseBuffer.getChannelData(0);
+        let b0 = 0, b1 = 0, b2 = 0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          b0 = 0.99765 * b0 + white * 0.099046;
+          b1 = 0.96300 * b1 + white * 0.2965164;
+          b2 = 0.57000 * b2 + white * 1.0526913;
+          data[i] = (b0 + b1 + b2 + white * 0.1848) * 0.16;
+        }
+
+        this.filter = this.ctx.createBiquadFilter();
+        this.filter.type = "lowpass";
+        this.filter.frequency.value = 210;
+        this.filter.Q.value = 3.2;
+
+        const shaper = this.ctx.createWaveShaper();
+        shaper.curve = this.makeDistortionCurve(28);
+        shaper.oversample = "2x";
+
+        this.engineGain = this.ctx.createGain();
+        this.engineGain.gain.value = 0.0001;
+
+        // Crisp 4-cylinder exhaust harmonics
+        this.oscExhaustA = this.ctx.createOscillator();
+        this.oscExhaustA.type = "sawtooth";
+        this.oscExhaustA.frequency.value = 31.6;
+
+        this.oscExhaustB = this.ctx.createOscillator();
+        this.oscExhaustB.type = "triangle";
+        this.oscExhaustB.frequency.value = 63.2;
+
+        this.oscSub = this.ctx.createOscillator();
+        this.oscSub.type = "sine";
+        this.oscSub.frequency.value = 31.6;
+
+        // Characteristic Eaton M45 Roots Supercharger Whine
+        this.oscSuperchargerMain = this.ctx.createOscillator();
+        this.oscSuperchargerMain.type = "sine";
+        this.oscSuperchargerMain.frequency.value = 1100;
+
+        this.oscSuperchargerHarmonic = this.ctx.createOscillator();
+        this.oscSuperchargerHarmonic.type = "triangle";
+        this.oscSuperchargerHarmonic.frequency.value = 2200;
+
+        this.scGain = this.ctx.createGain();
+        this.scGain.gain.value = 0.0001;
+
+        this.oscExhaustA.connect(shaper);
+        this.oscExhaustB.connect(shaper);
+        this.oscSub.connect(shaper);
+
+        shaper.connect(this.filter);
+        this.filter.connect(this.engineGain);
+        this.engineGain.connect(this.masterGain);
+
+        this.oscSuperchargerMain.connect(this.scGain);
+        this.oscSuperchargerHarmonic.connect(this.scGain);
+        this.scGain.connect(this.masterGain);
+
+        this.oscExhaustA.start();
+        this.oscExhaustB.start();
+        this.oscSub.start();
+        this.oscSuperchargerMain.start();
+        this.oscSuperchargerHarmonic.start();
+
+        this.initialised = true;
+      }
+
+      makeDistortionCurve(amount) {
+        const k = typeof amount === "number" ? amount : 40;
+        const nSamples = 44100;
+        const curve = new Float32Array(nSamples);
+        const deg = Math.PI / 180;
+        for (let i = 0; i < nSamples; ++i) {
+          const x = (i * 2) / nSamples - 1;
+          curve[i] = ((3 + k) * x * 20 * deg) / (Math.PI + k * Math.abs(x));
+        }
+        return curve;
+      }
+
+      setMuted(muted) {
+        if (!this.initialised) return;
+        this.masterGain.gain.setTargetAtTime(muted ? 0 : 0.42, this.ctx.currentTime, 0.04);
+      }
+
+      playSwitchClick(isOn) {
+        this.init();
+        if (!this.initialised || state.muted) return;
+
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(isOn ? 960 : 680, now);
+        osc.frequency.exponentialRampToValueAtTime(140, now + 0.035);
+
+        gain.gain.setValueAtTime(0.32, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.038);
+
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+        osc.start(now);
+        osc.stop(now + 0.04);
+      }
+
+      playStarterBurst(durationSec = 0.42) {
+        this.init();
+        if (!this.initialised || state.muted) return;
+
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const mod = this.ctx.createOscillator();
+        const modGain = this.ctx.createGain();
+        const gain = this.ctx.createGain();
+
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(155, now);
+        osc.frequency.linearRampToValueAtTime(195, now + durationSec);
+
+        mod.type = "sine";
+        mod.frequency.value = 12.5;
+        modGain.gain.value = 28;
+        mod.connect(modGain);
+        modGain.connect(osc.frequency);
+
+        gain.gain.setValueAtTime(0.22, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + durationSec);
+
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+
+        osc.start(now);
+        mod.start(now);
+        osc.stop(now + durationSec);
+        mod.stop(now + durationSec);
+      }
+
+      // Signature Cooper S R53 Overrun Exhaust Pops & Burbles
+      triggerExhaustBurbles() {
+        if (!this.initialised || state.muted || !this.noiseBuffer) return;
+        const now = this.ctx.currentTime;
+
+        const popCount = 3 + Math.floor(Math.random() * 2);
+        for (let i = 0; i < popCount; i++) {
+          const offset = i * (0.075 + Math.random() * 0.04);
+          const noise = this.ctx.createBufferSource();
+          noise.buffer = this.noiseBuffer;
+
+          const bp = this.ctx.createBiquadFilter();
+          bp.type = "bandpass";
+          bp.frequency.setValueAtTime(290 + Math.random() * 190, now + offset);
+          bp.Q.value = 1.9;
+
+          const gain = this.ctx.createGain();
+          gain.gain.setValueAtTime(0.55 * (1 - i * 0.16), now + offset);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.085);
+
+          noise.connect(bp);
+          bp.connect(gain);
+          gain.connect(this.masterGain);
+
+          noise.start(now + offset);
+          noise.stop(now + offset + 0.09);
+        }
+      }
+
+      updateEngine(rpm, isRunning, isThrottle) {
+        if (!this.initialised) return;
+        const now = this.ctx.currentTime;
+
+        if (!isRunning || rpm < 200) {
+          this.engineGain.gain.setTargetAtTime(0.0001, now, 0.08);
+          this.scGain.gain.setTargetAtTime(0.0001, now, 0.06);
+          return;
+        }
+
+        const firingHz = Math.max(22, (rpm / 60) * 2);
+        this.oscExhaustA.frequency.setTargetAtTime(firingHz, now, 0.03);
+        this.oscExhaustB.frequency.setTargetAtTime(firingHz * 2, now, 0.03);
+        this.oscSub.frequency.setTargetAtTime(firingHz, now, 0.03);
+
+        const cutoff = isThrottle
+          ? 280 + (rpm / 7200) * 1900
+          : 190 + (rpm / 7200) * 900;
+        this.filter.frequency.setTargetAtTime(cutoff, now, 0.04);
+
+        const targetVol = isThrottle ? 0.36 : 0.22;
+        this.engineGain.gain.setTargetAtTime(targetVol, now, 0.04);
+
+        // Eaton M45 Supercharger whine directly proportional to RPM!
+        const rpmRatio = Math.max(0, (rpm - 950) / 6250);
+        const scFreq = 980 + rpmRatio * 3450;
+        this.oscSuperchargerMain.frequency.setTargetAtTime(scFreq, now, 0.03);
+        this.oscSuperchargerHarmonic.frequency.setTargetAtTime(scFreq * 2, now, 0.03);
+
+        const scVol = isThrottle ? (0.015 + rpmRatio * 0.095) : (0.004 + rpmRatio * 0.025);
+        this.scGain.gain.setTargetAtTime(scVol, now, 0.04);
+      }
+    }
+
+    const audio = new MiniSuperchargedAudio();
+
+    /**
+     * =========================================================================
+     * UI CONTROLS & INTERACTION WIRING
+     * =========================================================================
+     */
+    const swIgnition = document.getElementById("swIgnition");
+    const btnStart = document.getElementById("btnStart");
+    const swTrackLights = document.getElementById("swTrackLights");
+    const swFestiveLights = document.getElementById("swFestiveLights");
+    const btnThrottle = document.getElementById("btnThrottle");
+    const audioToggleBtn = document.getElementById("audioToggleBtn");
+
+    const lblIgnition = document.getElementById("lblIgnition");
+    const lblEngine = document.getElementById("lblEngine");
+    const lblTrackLights = document.getElementById("lblTrackLights");
+    const lblFestiveLights = document.getElementById("lblFestiveLights");
+
+    const lampIgn = document.getElementById("lampIgn");
+    const lampOil = document.getElementById("lampOil");
+    const lampTrack = document.getElementById("lampTrack");
+    const rpmDisplay = document.getElementById("rpmDisplay");
+
+    function updateDashboardUI() {
+      swIgnition.setAttribute("aria-pressed", String(state.ignitionOn));
+      lblIgnition.textContent = state.ignitionOn ? "ON" : "OFF";
+
+      swTrackLights.setAttribute("aria-pressed", String(state.trackLightsOn));
+      lblTrackLights.textContent = state.trackLightsOn ? "ON" : "OFF";
+
+      swFestiveLights.setAttribute("aria-pressed", String(state.festiveLightsOn));
+      lblFestiveLights.textContent = state.festiveLightsOn ? "ON" : "OFF";
+
+      if (state.engineRunning) {
+        btnStart.textContent = "STOP";
+        btnStart.classList.add("running");
+        lblEngine.textContent = "RUNNING";
+      } else if (state.cranking) {
+        btnStart.textContent = "CRANK";
+        btnStart.classList.remove("running");
+        lblEngine.textContent = "CRANKING";
+      } else {
+        btnStart.textContent = "START";
+        btnStart.classList.remove("running");
+        lblEngine.textContent = "STOPPED";
+      }
+
+      // Tell-Tale LEDs
+      lampIgn.classList.toggle("ign-on", state.ignitionOn && !state.engineRunning);
+      lampOil.classList.toggle("oil-warn", state.ignitionOn && !state.engineRunning);
+      lampTrack.classList.toggle("track-on", state.trackLightsOn);
+
+      // Audio toggle pill
+      const audioIcon = document.getElementById("audioIcon");
+      const audioStatusText = document.getElementById("audioStatusText");
+      if (state.muted) {
+        audioToggleBtn.classList.add("muted");
+        audioToggleBtn.classList.remove("active");
+        audioIcon.textContent = "🔇";
+        audioStatusText.textContent = "SOUND OFF";
+      } else {
+        audioToggleBtn.classList.remove("muted");
+        audioToggleBtn.classList.add("active");
+        audioIcon.textContent = "🔊";
+        audioStatusText.textContent = "SOUND ON";
+      }
+    }
+
+    // 1. Ignition Switch
+    swIgnition.addEventListener("click", () => {
+      state.ignitionOn = !state.ignitionOn;
+      audio.playSwitchClick(state.ignitionOn);
+
+      if (!state.ignitionOn && state.engineRunning) {
+        state.engineRunning = false;
+        state.targetRpm = 0;
+        audio.triggerExhaustBurbles();
+      }
+      updateDashboardUI();
+    });
+
+    // 2. Engine Push-Button Starter (also illuminates circuit if pitch-black)
+    btnStart.addEventListener("click", () => {
+      audio.init();
+
+      if (state.engineRunning) {
+        state.engineRunning = false;
+        state.targetRpm = 0;
+        audio.playSwitchClick(false);
+        updateDashboardUI();
+        return;
+      }
+
+      if (state.cranking) return;
+
+      if (!state.ignitionOn) state.ignitionOn = true;
+      if (!state.trackLightsOn) state.trackLightsOn = true;
+
+      state.cranking = true;
+      updateDashboardUI();
+      audio.playStarterBurst(0.42);
+
+      setTimeout(() => {
+        if (!state.ignitionOn) {
+          state.cranking = false;
+          updateDashboardUI();
+          return;
+        }
+        state.cranking = false;
+        state.engineRunning = true;
+        state.rpm = 1800;
+        state.targetRpm = 950;
+        spawnExhaustPuff(3);
+        updateDashboardUI();
+      }, 400);
+    });
+
+    // 3. Track Lights Toggle
+    swTrackLights.addEventListener("click", () => {
+      state.trackLightsOn = !state.trackLightsOn;
+      audio.playSwitchClick(state.trackLightsOn);
+      updateDashboardUI();
+    });
+
+    // 4. Festive Lights Toggle
+    swFestiveLights.addEventListener("click", () => {
+      state.festiveLightsOn = !state.festiveLightsOn;
+      if (state.festiveLightsOn && !state.trackLightsOn) {
+        state.trackLightsOn = true;
+      }
+      audio.playSwitchClick(state.festiveLightsOn);
+      updateDashboardUI();
+    });
+
+    // 5. Hold Throttle / Flying Lap of Oulton Park
+    function engageThrottle() {
+      audio.init();
+      if (!state.ignitionOn) state.ignitionOn = true;
+      if (!state.trackLightsOn) state.trackLightsOn = true;
+      if (!state.festiveLightsOn) state.festiveLightsOn = true;
+      if (!state.engineRunning && !state.cranking) {
+        state.engineRunning = true;
+        state.rpm = 1650;
+      }
+      updateDashboardUI();
+
+      state.throttlePressed = true;
+      btnThrottle.classList.add("revving");
+    }
+
+    function releaseThrottle() {
+      if (state.throttlePressed && state.engineRunning && state.rpm > 2800) {
+        setTimeout(() => audio.triggerExhaustBurbles(), 65);
+        spawnExhaustPuff(3);
+      }
+      state.throttlePressed = false;
+      btnThrottle.classList.remove("revving");
+    }
+
+    btnThrottle.addEventListener("mousedown", engageThrottle);
+    window.addEventListener("mouseup", releaseThrottle);
+
+    btnThrottle.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      engageThrottle();
+    }, { passive: false });
+    window.addEventListener("touchend", releaseThrottle);
+
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "Space" && !e.repeat) {
+        e.preventDefault();
+        engageThrottle();
+      }
+    });
+    window.addEventListener("keyup", (e) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        releaseThrottle();
+      }
+    });
+
+    audioToggleBtn.addEventListener("click", () => {
+      audio.init();
+      state.muted = !state.muted;
+      audio.setMuted(state.muted);
+      updateDashboardUI();
+    });
+
+    updateDashboardUI();
+
+    /**
+     * =========================================================================
+     * OVERHEAD OULTON PARK INTERNATIONAL CIRCUIT SPLINE & TOP-DOWN MINI RENDERER
+     * =========================================================================
+     */
+    const canvas = document.getElementById("circuitCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let width = 800;
+    let height = 450;
+    let dpr = 1;
+
+    // Normalised waypoints (0..1) tracing Oulton Park International Circuit:
+    // Start/Finish Straight -> Old Hall -> Cascades -> Island Bend ->
+    // Shell Oils Hairpin -> Britten's -> Hislop's -> Knickerbrook -> Druids -> Lodge Corner
+    const OULTON_WAYPOINTS = [
+      { x: 0.25, y: 0.77, braking: false }, // Start / Finish Straight
+      { x: 0.14, y: 0.67, braking: true  }, // Braking into Old Hall Corner (T1)
+      { x: 0.15, y: 0.51, braking: false }, // Old Hall Exit -> The Avenue
+      { x: 0.27, y: 0.43, braking: false }, // Dentons -> Cascades Sweep
+      { x: 0.21, y: 0.30, braking: false }, // Cascades Apex
+      { x: 0.33, y: 0.23, braking: false }, // Lakeside Straight
+      { x: 0.52, y: 0.22, braking: false }, // Island Bend
+      { x: 0.67, y: 0.24, braking: true  }, // Braking into Shell Oils Hairpin
+      { x: 0.69, y: 0.33, braking: true  }, // Shell Oils Hairpin Apex
+      { x: 0.55, y: 0.37, braking: false }, // Exit Shell Oils -> Hilltop
+      { x: 0.48, y: 0.46, braking: true  }, // Britten's Chicane
+      { x: 0.57, y: 0.54, braking: true  }, // Hislop's Chicane
+      { x: 0.66, y: 0.51, braking: false }, // Knickerbrook Sweep
+      { x: 0.80, y: 0.45, braking: false }, // Clay Hill Climb
+      { x: 0.88, y: 0.56, braking: true  }, // Braking into Druids Double-Apex
+      { x: 0.83, y: 0.67, braking: false }, // Druids Exit
+      { x: 0.68, y: 0.71, braking: false }, // Warwick Bridge Straight
+      { x: 0.55, y: 0.82, braking: true  }, // Braking into Lodge Corner
+      { x: 0.41, y: 0.83, braking: false }  // Deer Leap onto Start/Finish
+    ];
+
+    let sampledTrack = []; // Dense precomputed spline points with tangents & kerb data
+    const snowflakes = [];
+    const exhaustPuffs = [];
+    const tyreSpray = [];
+    const WELSH_FESTIVE_BULBS = ["#dc2626", "#16a34a", "#f8fafc", "#facc15"];
+
+    function initParticles() {
+      snowflakes.length = 0;
+      for (let i = 0; i < 110; i++) {
+        snowflakes.push({
+          x: Math.random() * 1200,
+          y: Math.random() * 800,
+          r: 1 + Math.random() * 2.2,
+          vy: 14 + Math.random() * 26,
+          vx: -8 + Math.random() * 16,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    // Catmull-Rom spline interpolation for smooth racing line around Oulton Park
+    function catmullRom(p0, p1, p2, p3, t) {
+      const t2 = t * t;
+      const t3 = t2 * t;
+      return 0.5 * (
+        (2 * p1) +
+        (-p0 + p2) * t +
+        (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
+        (-p0 + 3 * p1 - 3 * p2 + p3) * t3
+      );
+    }
+
+    function buildOultonTrackGeometry() {
+      sampledTrack = [];
+      const n = OULTON_WAYPOINTS.length;
+      const stepsPerSegment = 24;
+
+      // Vertical bounds keep circuit neatly framed below the top greeting banner
+      const topPad = Math.max(106, height * 0.25);
+      const bottomPad = 24;
+      const usableH = Math.max(140, height - topPad - bottomPad);
+      const leftPad = Math.max(24, width * 0.06);
+      const usableW = Math.max(240, width - leftPad * 2);
+
+      const mapX = (nx) => leftPad + nx * usableW;
+      const mapY = (ny) => topPad + ((ny - 0.18) / 0.68) * usableH;
+
+      for (let i = 0; i < n; i++) {
+        const p0 = OULTON_WAYPOINTS[(i - 1 + n) % n];
+        const p1 = OULTON_WAYPOINTS[i];
+        const p2 = OULTON_WAYPOINTS[(i + 1) % n];
+        const p3 = OULTON_WAYPOINTS[(i + 2) % n];
+
+        for (let s = 0; s < stepsPerSegment; s++) {
+          const t = s / stepsPerSegment;
+          const nx = catmullRom(p0.x, p1.x, p2.x, p3.x, t);
+          const ny = catmullRom(p0.y, p1.y, p2.y, p3.y, t);
+          sampledTrack.push({
+            x: mapX(nx),
+            y: mapY(ny),
+            braking: p1.braking || p2.braking
+          });
+        }
+      }
+
+      // Compute tangent angles and cumulative distance for FIA red-and-white kerbs
+      let cumDist = 0;
+      for (let i = 0; i < sampledTrack.length; i++) {
+        const prev = sampledTrack[(i - 1 + sampledTrack.length) % sampledTrack.length];
+        const curr = sampledTrack[i];
+        const next = sampledTrack[(i + 1) % sampledTrack.length];
+        if (i > 0) {
+          cumDist += Math.hypot(curr.x - prev.x, curr.y - prev.y);
+        }
+        curr.dist = cumDist;
+        curr.angle = Math.atan2(next.y - prev.y, next.x - prev.x);
+      }
+    }
+
+    function getTrackSampleAt(progress) {
+      if (sampledTrack.length === 0) return { x: width / 2, y: height / 2, angle: 0, braking: false };
+      const wrapped = ((progress % 1) + 1) % 1;
+      const exactIdx = wrapped * sampledTrack.length;
+      const idx0 = Math.floor(exactIdx) % sampledTrack.length;
+      const idx1 = (idx0 + 1) % sampledTrack.length;
+      const frac = exactIdx - Math.floor(exactIdx);
+
+      const a = sampledTrack[idx0];
+      const b = sampledTrack[idx1];
+
+      // Shortest angle interpolation
+      let diff = b.angle - a.angle;
+      while (diff > Math.PI) diff -= Math.PI * 2;
+      while (diff < -Math.PI) diff += Math.PI * 2;
+
+      return {
+        x: a.x + (b.x - a.x) * frac,
+        y: a.y + (b.y - a.y) * frac,
+        angle: a.angle + diff * frac,
+        braking: a.braking
+      };
+    }
+
+    function spawnExhaustPuff(count = 1) {
+      const sample = getTrackSampleAt(state.lapProgress);
+      const carScale = Math.max(0.68, Math.min(1.15, Math.min(width, height) / 410));
+      const rearDist = 23 * carScale;
+      const rx = sample.x - Math.cos(sample.angle) * rearDist;
+      const ry = sample.y - Math.sin(sample.angle) * rearDist;
+
+      for (let i = 0; i < count; i++) {
+        exhaustPuffs.push({
+          x: rx + (Math.random() - 0.5) * 4,
+          y: ry + (Math.random() - 0.5) * 4,
+          vx: -Math.cos(sample.angle) * (18 + Math.random() * 24) + (Math.random() - 0.5) * 14,
+          vy: -Math.sin(sample.angle) * (18 + Math.random() * 24) + (Math.random() - 0.5) * 14,
+          r: 2.5 + Math.random() * 3.2,
+          alpha: 0.45 + Math.random() * 0.25,
+          life: 0,
+          maxLife: 0.55 + Math.random() * 0.35
+        });
+      }
+    }
+
+    function spawnTyreSpray(count = 2) {
+      const sample = getTrackSampleAt(state.lapProgress);
+      const carScale = Math.max(0.68, Math.min(1.15, Math.min(width, height) / 410));
+      const rearDist = 16 * carScale;
+      const rx = sample.x - Math.cos(sample.angle) * rearDist;
+      const ry = sample.y - Math.sin(sample.angle) * rearDist;
+
+      for (let i = 0; i < count; i++) {
+        tyreSpray.push({
+          x: rx + (Math.random() - 0.5) * 10,
+          y: ry + (Math.random() - 0.5) * 10,
+          vx: -Math.cos(sample.angle) * (35 + Math.random() * 45) + (Math.random() - 0.5) * 26,
+          vy: -Math.sin(sample.angle) * (35 + Math.random() * 45) + (Math.random() - 0.5) * 26,
+          r: 1.4 + Math.random() * 2.2,
+          life: 0,
+          maxLife: 0.35 + Math.random() * 0.25
+        });
+      }
+    }
+
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = Math.max(300, rect.width);
+      height = Math.max(280, rect.height);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildOultonTrackGeometry();
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    initParticles();
+    resizeCanvas();
+
+    /**
+     * Render Pitch-Black Standby Screen Until Lights/Engine Are Activated
+     */
+    function drawBlackStandbyScreen() {
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.save();
+      const prompt = CARD_CONFIG.standbyPrompt;
+      let fontSize = Math.max(9.5, Math.min(12.5, width * 0.029));
+      ctx.font = `700 ${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+      while (ctx.measureText(prompt).width > width - 28 && fontSize > 7.5) {
+        fontSize -= 0.5;
+        ctx.font = `700 ${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+      }
+
+      ctx.fillStyle = state.ignitionOn ? "#64748b" : "#334155";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(prompt, width / 2, height / 2);
+      ctx.restore();
+    }
+
+    /**
+     * Draw Subtle Red Welsh Dragon (Y Ddraig Goch) Emblem Watermark in Infield
+     */
+    function drawWelshDragonWatermark(cx, cy, r) {
+      ctx.save();
+      ctx.translate(cx, cy);
+
+      // Subtle glowing Welsh Dragon crest badge in the infield parkland
+      const glow = ctx.createRadialGradient(0, 0, 4, 0, 0, r * 1.45);
+      glow.addColorStop(0, "rgba(220, 38, 38, 0.20)");
+      glow.addColorStop(0.65, "rgba(22, 163, 74, 0.08)");
+      glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(0, 0, r * 1.45, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Stylised Y Ddraig Goch silhouette (wings, horned head, arched back & barbed tail)
+      ctx.fillStyle = "rgba(220, 38, 38, 0.26)";
+      ctx.strokeStyle = "rgba(248, 113, 113, 0.32)";
+      ctx.lineWidth = 1.2;
+
+      ctx.beginPath();
+      // Tail tip on left
+      ctx.moveTo(-r * 0.85, r * 0.15);
+      ctx.quadraticCurveTo(-r * 0.65, -r * 0.28, -r * 0.35, -r * 0.05);
+      // Raised dragon wing
+      ctx.lineTo(-r * 0.42, -r * 0.58);
+      ctx.lineTo(-r * 0.15, -r * 0.34);
+      ctx.lineTo(r * 0.02, -r * 0.65);
+      ctx.lineTo(r * 0.14, -r * 0.24);
+      // Neck & horned dragon head on right
+      ctx.quadraticCurveTo(r * 0.45, -r * 0.46, r * 0.68, -r * 0.28);
+      ctx.lineTo(r * 0.54, -r * 0.38); // Horn
+      ctx.lineTo(r * 0.82, -r * 0.18); // Snout
+      ctx.lineTo(r * 0.62, -r * 0.06); // Jaw
+      // Chest & clawed legs
+      ctx.quadraticCurveTo(r * 0.38, r * 0.12, r * 0.46, r * 0.44);
+      ctx.lineTo(r * 0.28, r * 0.44);
+      ctx.lineTo(r * 0.22, r * 0.18);
+      ctx.quadraticCurveTo(-r * 0.05, r * 0.24, -r * 0.26, r * 0.45);
+      ctx.lineTo(-r * 0.44, r * 0.45);
+      ctx.lineTo(-r * 0.34, r * 0.16);
+      ctx.quadraticCurveTo(-r * 0.62, r * 0.32, -r * 0.85, r * 0.15);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Subtle North Wales label under watermark
+      ctx.fillStyle = "rgba(226, 232, 240, 0.24)";
+      ctx.font = `800 ${Math.max(8, r * 0.22)}px sans-serif`;
+      ctx.textAlign = "center";
+      ctx.fillText("CYMRU • OULTON PARK", 0, r * 0.72);
+
+      ctx.restore();
+    }
+
+    /**
+     * Draw Overhead Winter Oulton Park International Circuit
+     */
+    function drawOultonParkCircuit() {
+      // 1. Snow-dusted Cheshire parkland night base
+      const bgGrad = ctx.createRadialGradient(width * 0.5, height * 0.55, 20, width * 0.5, height * 0.55, Math.max(width, height) * 0.75);
+      bgGrad.addColorStop(0, "#131c29");
+      bgGrad.addColorStop(0.65, "#0b111a");
+      bgGrad.addColorStop(1, "#05080d");
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Subtle frosted snow patches across parkland
+      ctx.fillStyle = "rgba(226, 232, 240, 0.045)";
+      for (let i = 0; i < 14; i++) {
+        const px = ((i * 173) % 100) / 100 * width;
+        const py = ((i * 97) % 100) / 100 * height;
+        ctx.beginPath();
+        ctx.ellipse(px, py, 55 + (i % 4) * 22, 28 + (i % 3) * 14, i * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (sampledTrack.length < 4) return;
+
+      const trackWidth = Math.max(18, Math.min(30, Math.min(width, height) * 0.068));
+
+      // 2. Welsh Dragon Infield Watermark (positioned in the central infield lake/parkland area)
+      drawWelshDragonWatermark(width * 0.41, height * 0.58, Math.min(width, height) * 0.13);
+
+      // 3. Outer Snow Verge / Run-Off Edge
+      ctx.save();
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      sampledTrack.forEach((pt, idx) => {
+        if (idx === 0) ctx.moveTo(pt.x, pt.y);
+        else ctx.lineTo(pt.x, pt.y);
+      });
+      ctx.closePath();
+      ctx.strokeStyle = "rgba(226, 232, 240, 0.24)";
+      ctx.lineWidth = trackWidth + 10;
+      ctx.stroke();
+
+      // 4. FIA Red-and-White Apex Kerbs on Cornering Zones
+      const kerbOffset = trackWidth * 0.5 + 1.5;
+      for (let i = 0; i < sampledTrack.length; i++) {
+        const curr = sampledTrack[i];
+        const next = sampledTrack[(i + 1) % sampledTrack.length];
+        if (!curr.braking) continue;
+
+        const stripeIdx = Math.floor(curr.dist / 9);
+        ctx.strokeStyle = stripeIdx % 2 === 0 ? "#dc2626" : "#f8fafc";
+        ctx.lineWidth = 3.2;
+
+        // Draw kerbs along both inner & outer edges of braking/apex corners
+        [-1, 1].forEach((side) => {
+          const nx1 = curr.x - Math.sin(curr.angle) * kerbOffset * side;
+          const ny1 = curr.y + Math.cos(curr.angle) * kerbOffset * side;
+          const nx2 = next.x - Math.sin(next.angle) * kerbOffset * side;
+          const ny2 = next.y + Math.cos(next.angle) * kerbOffset * side;
+
+          ctx.beginPath();
+          ctx.moveTo(nx1, ny1);
+          ctx.lineTo(nx2, ny2);
+          ctx.stroke();
+        });
+      }
+
+      // 5. Dark Tarmac Circuit Ribbon
+      ctx.beginPath();
+      sampledTrack.forEach((pt, idx) => {
+        if (idx === 0) ctx.moveTo(pt.x, pt.y);
+        else ctx.lineTo(pt.x, pt.y);
+      });
+      ctx.closePath();
+      ctx.strokeStyle = "#1e2430";
+      ctx.lineWidth = trackWidth;
+      ctx.stroke();
+
+      // Subtle racing line sheen
+      ctx.strokeStyle = "rgba(148, 163, 184, 0.14)";
+      ctx.lineWidth = trackWidth * 0.36;
+      ctx.stroke();
+
+      // 6. Start / Finish Line Chequered Strip
+      const sf = getTrackSampleAt(0.0);
+      ctx.save();
+      ctx.translate(sf.x, sf.y);
+      ctx.rotate(sf.angle);
+      const halfW = trackWidth * 0.48;
+      const sqSize = 3.5;
+      for (let r = -halfW; r < halfW; r += sqSize) {
+        for (let c = -3.5; c < 3.5; c += sqSize) {
+          const isWhite = (Math.round(r / sqSize) + Math.round(c / sqSize)) % 2 === 0;
+          ctx.fillStyle = isWhite ? "#f8fafc" : "#0f172a";
+          ctx.fillRect(c, r, sqSize, sqSize);
+        }
+      }
+      ctx.restore();
+
+      // 7. Pit Lane Wall & Festive Welsh Fairy Lights along Start/Finish Straight
+      const pitStart = getTrackSampleAt(0.95);
+      const pitEnd = getTrackSampleAt(0.04);
+      const wallOffset = trackWidth * 0.85;
+      const wx1 = pitStart.x - Math.sin(pitStart.angle) * wallOffset;
+      const wy1 = pitStart.y + Math.cos(pitStart.angle) * wallOffset;
+      const wx2 = pitEnd.x - Math.sin(pitEnd.angle) * wallOffset;
+      const wy2 = pitEnd.y + Math.cos(pitEnd.angle) * wallOffset;
+
+      ctx.strokeStyle = "#475569";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(wx1, wy1);
+      ctx.lineTo(wx2, wy2);
+      ctx.stroke();
+
+      if (state.festiveLightsOn) {
+        const bulbCount = 10;
+        for (let b = 0; b <= bulbCount; b++) {
+          const t = b / bulbCount;
+          const bx = wx1 + (wx2 - wx1) * t;
+          const by = wy1 + (wy2 - wy1) * t;
+          const col = WELSH_FESTIVE_BULBS[b % WELSH_FESTIVE_BULBS.length];
+          const pulse = 0.55 + 0.45 * Math.sin(state.time * 5.8 + b * 0.9);
+
+          const halo = ctx.createRadialGradient(bx, by, 1, bx, by, 11);
+          halo.addColorStop(0, col);
+          halo.addColorStop(1, "rgba(0,0,0,0)");
+          ctx.fillStyle = halo;
+          ctx.globalAlpha = pulse;
+          ctx.beginPath();
+          ctx.arc(bx, by, 11, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.globalAlpha = 1;
+
+          ctx.fillStyle = col;
+          ctx.beginPath();
+          ctx.arc(bx, by, 2.2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // 8. Corner Name Labels (Compact & Clean)
+      const labels = [
+        { text: "OLD HALL", p: 0.06, dx: -28, dy: 0 },
+        { text: "CASCADES", p: 0.21, dx: -26, dy: -12 },
+        { text: "SHELL OILS", p: 0.40, dx: 28, dy: -8 },
+        { text: "DRUIDS", p: 0.76, dx: 26, dy: 2 },
+        { text: "LODGE", p: 0.91, dx: 0, dy: 16 }
+      ];
+
+      ctx.font = "700 8.5px ui-monospace, SFMono-Regular, Menlo, monospace";
+      ctx.fillStyle = "rgba(148, 163, 184, 0.55)";
+      ctx.textAlign = "center";
+      labels.forEach((lbl) => {
+        const pt = getTrackSampleAt(lbl.p);
+        ctx.fillText(lbl.text, pt.x + lbl.dx, pt.y + lbl.dy);
+      });
+
+      ctx.restore();
+    }
+
+    /**
+     * Draw Top-Down Chili Red BMW MINI Cooper S (R53) with Pepper White Stripes,
+     * Black Roof, Xenon Headlight Cones, Brake Lights & Roof Christmas Tree
+     */
+    function drawTopDownMiniCooperS() {
+      const sample = getTrackSampleAt(state.lapProgress);
+      const carScale = Math.max(0.68, Math.min(1.15, Math.min(width, height) / 410));
+
+      // Subtle engine idle vibration
+      const vibX = state.engineRunning ? Math.sin(state.time * 48) * 0.6 : 0;
+      const vibY = state.engineRunning ? Math.cos(state.time * 52) * 0.6 : 0;
+
+      ctx.save();
+      ctx.translate(sample.x + vibX, sample.y + vibY);
+      ctx.rotate(sample.angle);
+      ctx.scale(carScale, carScale);
+
+      // 1. Xenon / LED Headlight Beams Cutting Ahead Along Track
+      if (state.trackLightsOn || state.ignitionOn) {
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+        const beamLen = state.trackLightsOn ? 115 : 55;
+        const beamGrad = ctx.createLinearGradient(20, 0, 20 + beamLen, 0);
+        beamGrad.addColorStop(0, "rgba(254, 249, 195, 0.82)");
+        beamGrad.addColorStop(0.45, "rgba(224, 242, 254, 0.32)");
+        beamGrad.addColorStop(1, "rgba(224, 242, 254, 0)");
+
+        ctx.fillStyle = beamGrad;
+        ctx.beginPath();
+        ctx.moveTo(21, -7);
+        ctx.lineTo(20 + beamLen, -34);
+        ctx.lineTo(20 + beamLen, 34);
+        ctx.lineTo(21, 7);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // 2. Ground Shadow
+      ctx.fillStyle = "rgba(0, 0, 0, 0.72)";
+      ctx.beginPath();
+      ctx.roundRect(-24, -13.5, 48, 27, 9);
+      ctx.fill();
+
+      // 3. Four Wide Track Wheels / Tyres Peeking Under Arches
+      ctx.fillStyle = "#090b0f";
+      ctx.fillRect(-17, -13.5, 9, 3);
+      ctx.fillRect(-17, 10.5, 9, 3);
+      ctx.fillRect(9, -13.5, 9, 3);
+      ctx.fillRect(9, 10.5, 9, 3);
+
+      // 4. Chili Red BMW MINI Cooper S Body Shell (Compact, Bulldog Stance)
+      ctx.fillStyle = CARD_CONFIG.miniBodyColour;
+      ctx.beginPath();
+      ctx.roundRect(-22, -12, 44, 24, 8);
+      ctx.fill();
+
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // 5. Iconic Pepper White Bonnet Stripes
+      ctx.fillStyle = CARD_CONFIG.miniStripeColour;
+      ctx.fillRect(9, -6.5, 11, 3.2);
+      ctx.fillRect(9, 3.3, 11, 3.2);
+
+      // R53 Bonnet Supercharger Air Scoop
+      ctx.fillStyle = "#0f172a";
+      ctx.beginPath();
+      ctx.roundRect(13, -2.5, 3.2, 5, 1);
+      ctx.fill();
+
+      // 6. Raked Front Windscreen & Rear Hatchback Glass
+      ctx.fillStyle = "#1e293b";
+      // Front windscreen
+      ctx.beginPath();
+      ctx.moveTo(4, -9.5);
+      ctx.lineTo(9.5, -8);
+      ctx.lineTo(9.5, 8);
+      ctx.lineTo(4, 9.5);
+      ctx.closePath();
+      ctx.fill();
+
+      // Rear glass
+      ctx.beginPath();
+      ctx.moveTo(-16, -8.5);
+      ctx.lineTo(-19.5, -7);
+      ctx.lineTo(-19.5, 7);
+      ctx.lineTo(-16, 8.5);
+      ctx.closePath();
+      ctx.fill();
+
+      // 7. Jet Black Floating MINI Roof & Side Wing Mirrors
+      ctx.fillStyle = CARD_CONFIG.miniRoofColour;
+      ctx.beginPath();
+      ctx.roundRect(-16, -9.2, 20, 18.4, 3.5);
+      ctx.fill();
+
+      // Black wing mirrors
+      ctx.beginPath();
+      ctx.ellipse(5, -13.2, 2.2, 1.5, -0.2, 0, Math.PI * 2);
+      ctx.ellipse(5, 13.2, 2.2, 1.5, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Rear Cooper S Track Spoiler Wing
+      ctx.fillStyle = "#090d16";
+      ctx.fillRect(-23.5, -10.5, 3.2, 21);
+
+      // 8. Miniature Christmas Tree Strapped to MINI Roof!
+      ctx.save();
+      ctx.translate(-6, 0);
+
+      // Layered pine boughs pointing slightly aft
+      const greens = ["#14532d", "#166534", "#22c55e"];
+      for (let layer = 0; layer < 3; layer++) {
+        const lx = 5 - layer * 5;
+        const w = 4.5 + layer * 2.2;
+        ctx.fillStyle = greens[layer];
+        ctx.beginPath();
+        ctx.moveTo(lx + 4, 0);
+        ctx.lineTo(lx - 4, -w);
+        ctx.lineTo(lx - 4, w);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      // Twinkling miniature fairy lights on roof tree
+      if (state.festiveLightsOn || state.trackLightsOn) {
+        const bulbs = [
+          { x: 4, y: 0 }, { x: 0, y: -3.5 }, { x: 0, y: 3.5 },
+          { x: -5, y: -5.5 }, { x: -5, y: 0 }, { x: -5, y: 5.5 }
+        ];
+        bulbs.forEach((b, idx) => {
+          const col = WELSH_FESTIVE_BULBS[idx % WELSH_FESTIVE_BULBS.length];
+          const glow = 0.55 + 0.45 * Math.sin(state.time * 7 + idx * 1.4);
+          ctx.fillStyle = col;
+          ctx.globalAlpha = glow;
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, 1.6, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+      }
+      ctx.restore();
+
+      // 9. Round MINI Headlamps & Glowing Red Brake/Tail Lights
+      ctx.fillStyle = "#fef9c3";
+      ctx.beginPath();
+      ctx.arc(20.5, -7.2, 2.1, 0, Math.PI * 2);
+      ctx.arc(20.5, 7.2, 2.1, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Rear brake lights glow bright red under braking into Shell Oils & Druids!
+      const brakingNow = state.isBraking && state.throttlePressed;
+      ctx.fillStyle = brakingNow ? "#ff2a2a" : (state.ignitionOn ? "#dc2626" : "#7f1d1d");
+      ctx.fillRect(-22.5, -9, 1.8, 4.2);
+      ctx.fillRect(-22.5, 4.8, 1.8, 4.2);
+
+      if (brakingNow || state.ignitionOn) {
+        const brakeRad = brakingNow ? 15 : 8;
+        [-7, 7].forEach((by) => {
+          const bGlow = ctx.createRadialGradient(-22.5, by, 1, -22.5, by, brakeRad);
+          bGlow.addColorStop(0, brakingNow ? "rgba(255, 40, 40, 0.95)" : "rgba(220, 38, 38, 0.55)");
+          bGlow.addColorStop(1, "rgba(255, 40, 40, 0)");
+          ctx.fillStyle = bGlow;
+          ctx.beginPath();
+          ctx.arc(-22.5, by, brakeRad, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      // Centre-exit twin Cooper S exhaust tips
+      ctx.fillStyle = "#e2e8f0";
+      ctx.fillRect(-23.8, -2, 2, 1.5);
+      ctx.fillRect(-23.8, 0.5, 2, 1.5);
+
+      ctx.restore();
+    }
+
+    /**
+     * Draw Exhaust Vapour, Winter Tyre Spray & Falling Snow
+     */
+    function drawParticles(dt) {
+      // 1. Exhaust vapour
+      for (let i = exhaustPuffs.length - 1; i >= 0; i--) {
+        const p = exhaustPuffs[i];
+        p.life += dt;
+        if (p.life >= p.maxLife) {
+          exhaustPuffs.splice(i, 1);
+          continue;
+        }
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+        p.r += 7 * dt;
+
+        const alpha = p.alpha * (1 - p.life / p.maxLife);
+        ctx.fillStyle = `rgba(226, 232, 240, ${alpha})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 2. Winter tyre spray
+      for (let i = tyreSpray.length - 1; i >= 0; i--) {
+        const g = tyreSpray[i];
+        g.life += dt;
+        if (g.life >= g.maxLife) {
+          tyreSpray.splice(i, 1);
+          continue;
+        }
+        g.x += g.vx * dt;
+        g.y += g.vy * dt;
+        const alpha = 1 - g.life / g.maxLife;
+        ctx.fillStyle = `rgba(248, 250, 252, ${alpha * 0.85})`;
+        ctx.beginPath();
+        ctx.arc(g.x, g.y, g.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 3. Falling Winter Snowflakes
+      const activeSnow = state.festiveLightsOn ? snowflakes.length : Math.floor(snowflakes.length * 0.5);
+      for (let i = 0; i < activeSnow; i++) {
+        const f = snowflakes[i];
+        f.y += f.vy * dt;
+        f.x += (f.vx + Math.sin(state.time * 1.4 + f.phase) * 10) * dt;
+
+        if (f.y > height) {
+          f.y = -6;
+          f.x = Math.random() * width;
+        }
+        if (f.x < -10) f.x = width + 10;
+        if (f.x > width + 10) f.x = -10;
+
+        ctx.fillStyle = "rgba(241, 245, 249, 0.52)";
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    /**
+     * Draw Responsive Welsh / Festive Greeting Banner Overlay
+     * Auto-scales font sizes so zero characters ever clip on 360px phones!
+     */
+    function drawFestiveGreetingOverlay() {
+      ctx.save();
+
+      // Top-Left 'ALED' Pill Badge with Welsh Red/Green Accent Stripe
+      const badgeW = 94;
+      const badgeH = 26;
+      ctx.fillStyle = "rgba(12, 14, 18, 0.88)";
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.24)";
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.roundRect(12, 12, badgeW, badgeH, 6);
+      ctx.fill();
+      ctx.stroke();
+
+      // Mini Welsh Red/White/Green vertical bar inside badge
+      ctx.fillStyle = "#dc2626";
+      ctx.fillRect(18, 17, 4, 8);
+      ctx.fillStyle = "#16a34a";
+      ctx.fillRect(18, 25, 4, 8);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "900 13px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(CARD_CONFIG.driverName, 14 + badgeW / 2 + 2, 29);
+
+      // Show festive track-note & Nadolig Llawen banner whenever Festive Lights or Track Lights are active
+      if (state.festiveLightsOn || state.trackLightsOn) {
+        const noteText = CARD_CONFIG.paceNote;
+        const maxPillW = width - 20;
+        const innerPad = 18;
+        let noteFontSize = 11;
+        ctx.font = `800 ${noteFontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+
+        while (ctx.measureText(noteText).width > maxPillW - innerPad && noteFontSize > 6.2) {
+          noteFontSize -= 0.4;
+          ctx.font = `800 ${noteFontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+        }
+
+        const pillW = Math.min(maxPillW, ctx.measureText(noteText).width + innerPad);
+        const pillX = (width - pillW) / 2;
+        const pillY = 44;
+        const pillH = Math.max(20, noteFontSize + 11);
+
+        ctx.fillStyle = "rgba(254, 243, 199, 0.95)";
+        ctx.beginPath();
+        ctx.roundRect(pillX, pillY, pillW, pillH, 6);
+        ctx.fill();
+
+        ctx.fillStyle = "#78350f";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(noteText, width / 2, pillY + pillH / 2 + 0.5);
+        ctx.textBaseline = "alphabetic";
+
+        // Main Bilingual Headline: 'NADOLIG LLAWEN • MERRY CHRISTMAS 2026'
+        const fullHeadline = `${CARD_CONFIG.greeting} ${CARD_CONFIG.year}`;
+        const maxHeadlineW = width - 22;
+        let titleSize = Math.max(14, Math.min(34, width * 0.052));
+        ctx.font = `900 ${titleSize}px sans-serif`;
+
+        while (ctx.measureText(fullHeadline).width > maxHeadlineW && titleSize > 11) {
+          titleSize -= 0.8;
+          ctx.font = `900 ${titleSize}px sans-serif`;
+        }
+
+        ctx.textAlign = "center";
+        ctx.shadowColor = "rgba(220, 38, 38, 0.85)";
+        ctx.shadowBlur = 16;
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(fullHeadline, width / 2, pillY + pillH + 8 + titleSize);
+
+        // Gold Sub-Headline: 'FROM ALED'
+        ctx.shadowColor = "rgba(22, 163, 74, 0.9)";
+        ctx.shadowBlur = 10;
+        ctx.fillStyle = "#fde047";
+        const sigSize = Math.max(11, titleSize * 0.52);
+        ctx.font = `900 ${sigSize}px sans-serif`;
+        ctx.fillText(CARD_CONFIG.fromLine, width / 2, pillY + pillH + 13 + titleSize + sigSize);
+      }
+
+      // Celebratory Flying Lap Banner on Start/Finish Line Crossing
+      if (state.lapCelebrationTimer > 0) {
+        const finText = CARD_CONFIG.finaleBanner;
+        let finFont = 10.5;
+        ctx.font = `800 ${finFont}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+        while (ctx.measureText(finText).width > width - 26 && finFont > 6.5) {
+          finFont -= 0.4;
+          ctx.font = `800 ${finFont}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+        }
+
+        const fW = Math.min(width - 20, ctx.measureText(finText).width + 20);
+        const fH = finFont + 12;
+        const fY = height - fH - 10;
+
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = "rgba(15, 23, 42, 0.94)";
+        ctx.strokeStyle = "#22c55e";
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.roundRect((width - fW) / 2, fY, fW, fH, 6);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.textBaseline = "middle";
+        ctx.fillText(finText, width / 2, fY + fH / 2 + 0.5);
+        ctx.textBaseline = "alphabetic";
+      }
+
+      ctx.restore();
+    }
+
+    /**
+     * =========================================================================
+     * MAIN ANIMATION & FLYING LAP PHYSICS LOOP
+     * =========================================================================
+     */
+    let puffTimer = 0;
+    let sprayTimer = 0;
+
+    function tick(now) {
+      const dt = Math.min(0.05, (now - state.lastFrameTime) / 1000);
+      state.lastFrameTime = now;
+      state.time += dt;
+
+      const currentSample = getTrackSampleAt(state.lapProgress);
+      state.isBraking = currentSample.braking;
+
+      // 1. 1.6L Supercharged R53 RPM & Lap Speed Physics
+      if (state.engineRunning) {
+        if (state.throttlePressed) {
+          // Ease RPM slightly into Shell Oils / Druids braking zones, flat out on straights!
+          const cornerCap = currentSample.braking ? 5450 : 7200;
+          state.targetRpm = cornerCap;
+          state.rpm += (state.targetRpm - state.rpm) * Math.min(1, dt * 7.2);
+
+          // Advance around Oulton Park (~5.8 seconds per full flying lap)
+          const targetLapSpeed = currentSample.braking ? 0.115 : 0.195;
+          state.lapSpeed += (targetLapSpeed - state.lapSpeed) * Math.min(1, dt * 4.5);
+        } else {
+          const idleRipple = Math.sin(state.time * 18) * 22;
+          state.targetRpm = 950 + idleRipple;
+          state.rpm += (state.targetRpm - state.rpm) * Math.min(1, dt * 4.2);
+
+          // Coast smoothly to a halt on lift-off
+          state.lapSpeed += (0 - state.lapSpeed) * Math.min(1, dt * 2.8);
+          if (state.lapSpeed < 0.002) state.lapSpeed = 0;
+        }
+      } else if (state.cranking) {
+        state.rpm = 330 + Math.sin(state.time * 34) * 35;
+        state.lapSpeed = 0;
+      } else {
+        state.rpm += (0 - state.rpm) * Math.min(1, dt * 5.5);
+        if (state.rpm < 15) state.rpm = 0;
+        state.lapSpeed += (0 - state.lapSpeed) * Math.min(1, dt * 3.5);
+      }
+
+      // Update lap progress & check start/finish line crossing
+      if (state.lapSpeed > 0) {
+        const prevLap = Math.floor(state.lapProgress);
+        state.lapProgress += state.lapSpeed * dt;
+        const newLap = Math.floor(state.lapProgress);
+
+        if (newLap > prevLap) {
+          state.lapCelebrationTimer = 4.2;
+          audio.triggerExhaustBurbles();
+        }
+      }
+
+      if (state.lapCelebrationTimer > 0) {
+        state.lapCelebrationTimer = Math.max(0, state.lapCelebrationTimer - dt);
+      }
+
+      rpmDisplay.textContent = `${Math.round(state.rpm)} RPM`;
+      audio.updateEngine(state.rpm, state.engineRunning, state.throttlePressed);
+
+      // 2. Emit Exhaust Vapour & Tyre Spray when Circuit is Lit
+      const screenLit = state.trackLightsOn || state.festiveLightsOn;
+      if (state.engineRunning && screenLit) {
+        puffTimer += dt;
+        const puffInterval = state.throttlePressed ? 0.06 : 0.25;
+        if (puffTimer >= puffInterval) {
+          puffTimer = 0;
+          spawnExhaustPuff(1);
+        }
+
+        if (state.throttlePressed) {
+          sprayTimer += dt;
+          if (sprayTimer >= 0.035) {
+            sprayTimer = 0;
+            spawnTyreSpray(2);
+          }
+        }
+      }
+
+      // 3. Render Top Viewport: Pitch-Black Standby vs Illuminated Oulton Park
+      ctx.clearRect(0, 0, width, height);
+
+      if (!screenLit) {
+        drawBlackStandbyScreen();
+      } else {
+        drawOultonParkCircuit();
+        drawParticles(dt);
+        drawTopDownMiniCooperS();
+        drawFestiveGreetingOverlay();
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    window.addEventListener("load", () => {
+      resizeCanvas();
+      state.lastFrameTime = performance.now();
+      requestAnimationFrame(tick);
+    });
+  </script>
+</body>
+</html>
